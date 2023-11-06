@@ -46,7 +46,7 @@ reated by https://www.toptal.com/developers/gitignore/api/java,maven,intellij
 .idea
 # CMake
 cmake-build-*/
-
+.target/
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
