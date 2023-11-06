@@ -1,15 +1,18 @@
-import com.alejo.to_do_app.model.Conection;
+import com.alejo.to_do_app.service.TaskService;
 
-import java.sql.Connection;
+import java.util.Scanner;
 
 public class Main {
     public static void main (String[] args) {
-        System.out.println("Hola");
-        Conection conection = new Conection();
-        try{
-            Connection cnx = conection.getConection();
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        Scanner scanner = new Scanner(System.in);
+        int option = 0;
+        do{
+            System.out.println("<--To Do APP-->\n1. Create task \n2. View Task\n3.Update Task\n4. Delete task");
+            option = scanner.nextInt();
+            switch (option){
+                case 1:
+                    TaskService.createTask();
+            }
+        }while (option != 0);
     }
 }

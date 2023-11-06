@@ -56,7 +56,13 @@ cmake-build-*/
 
 # IntelliJ
 out/
+# Carpetas generadas por IntelliJ IDEA
+.idea/
 
+# Archivos generados por IntelliJ IDEA
+*.iml
+*.iws
+*.ipr
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
