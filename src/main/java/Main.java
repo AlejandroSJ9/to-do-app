@@ -16,6 +16,9 @@ public class Main {
                 case 2:
                     TaskService.getTask();
                     break;
+                case 3:
+                    TaskService.updateTask();
+                    break;
             }
         }while (option != 0);
     }

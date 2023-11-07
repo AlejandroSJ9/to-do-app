@@ -118,4 +118,19 @@ public class Task {
     public void setTag (Tag tag) {
         this.tag = tag;
     }
+
+    @Override
+    public String toString () {
+        return "Your Task{" +
+                "id_task=" + id_task +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", description='" + description + '\'' +
+                ", created_at=" + created_at +
+                ", done=" + done +
+                ", dead_line=" + dead_line +
+                ", priority='" + priority + '\'' +
+                '}';
+    }
+
 }
