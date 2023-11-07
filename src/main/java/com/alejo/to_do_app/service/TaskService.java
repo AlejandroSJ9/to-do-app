@@ -42,8 +42,10 @@ public class TaskService {
             }
             task.setPriority(priorityFinal);
             task.setStatus(Task.Status.PENDING.name());
+            task.setDone(false);
             //Sending to service
             TaskController.crearTareaDB(task);
+
         }catch (Exception e){
             System.out.println("Error: " + e);
             createTask();
@@ -60,11 +62,15 @@ public class TaskService {
                 System.out.println("  -" + task.getPriority());
                 System.out.println("  -" + task.getStatus());
                 System.out.println("  -" + task.getCreated_at().toString());
+                System.out.println("  -" + task.getDone());
                 System.out.println("*************************************");
             }
         }else{
             System.out.println("You dont have tasks yet");
         }
+
+    }
+    public static void updateTask(){
 
     }
 }

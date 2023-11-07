@@ -39,6 +39,22 @@ public class Task {
 
     public Task(){}
 
+    public Boolean getDone () {
+        return done;
+    }
+
+    public void setDone (Boolean done) {
+        this.done = done;
+    }
+
+    public Date getDead_line () {
+        return dead_line;
+    }
+
+    public void setDead_line (Date dead_line) {
+        this.dead_line = dead_line;
+    }
+
     public Integer getId_task () {
         return id_task;
     }
