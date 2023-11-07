@@ -8,7 +8,8 @@ public class Task {
     private String status;
     private String description;
     private Date created_at;
-    private Date finished_at;
+    private Boolean done;
+    private Date dead_line;
     private String priority;
     private Tag tag;
 
@@ -23,6 +24,16 @@ public class Task {
         this.name = name;
         this.status = status;
         this.description = description;
+        this.priority = priority;
+    }
+
+    public Task (Integer id_task, String name, String status, String description, Date created_at, Date dead_line, String priority){
+        this.id_task = id_task;
+        this.name = name;
+        this.status = status;
+        this.description = description;
+        this.created_at = created_at;
+        this.dead_line = dead_line;
         this.priority = priority;
     }
 
@@ -69,11 +80,11 @@ public class Task {
     }
 
     public Date getFinished_at () {
-        return finished_at;
+        return dead_line;
     }
 
     public void setFinished_at (Date finished_at) {
-        this.finished_at = finished_at;
+        this.dead_line = finished_at;
     }
 
     public String getPriority () {

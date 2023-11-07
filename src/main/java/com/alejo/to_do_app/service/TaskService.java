@@ -1,11 +1,10 @@
 package com.alejo.to_do_app.service;
 
 import com.alejo.to_do_app.controller.TaskController;
-import com.alejo.to_do_app.model.Task;
-
+import com.alejo.to_do_app.model.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-import com.alejo.to_do_app.model.Task;
 public class TaskService {
     public static void createTask(){
         try{
@@ -15,6 +14,7 @@ public class TaskService {
             String name = scanner.nextLine();
             System.out.println("<-Prioridad->\n1. High\n2. Normal\n3. Low");
             int priorityChoise = scanner.nextInt();
+            scanner.nextLine();
             String priorityFinal = "";
             switch (priorityChoise){
                 case 1:
@@ -30,8 +30,8 @@ public class TaskService {
                     System.out.println("Error: Opcion invalida");
                     break;
             }
-            System.out.println("If you want add description to " + name + ": (press 0 to carry on without description");
-            String description = scanner.next();
+            System.out.println("If you want add description to " + name + ": (press 0 to carry on without description)");
+            String description = scanner.nextLine();
             //Creating an object
             Task task = new Task();
             task.setName(name);
@@ -41,12 +41,29 @@ public class TaskService {
                 task.setDescription("");
             }
             task.setPriority(priorityFinal);
-            task.setStatus(Task.Status.IN_PROGRESS.name());
+            task.setStatus(Task.Status.PENDING.name());
             //Sending to service
             TaskController.crearTareaDB(task);
         }catch (Exception e){
             System.out.println("Error: " + e);
             createTask();
+        }
+
+    }
+    public static void getTask(){
+        List<Task> data = TaskController.getTaskDB();
+        if(!data.isEmpty()){
+            for(Task task: data){
+                System.out.println("*************************************");
+                System.out.println("<--" +task.getName() +"-->");
+                System.out.println("description: " +  task.getDescription());
+                System.out.println("  -" + task.getPriority());
+                System.out.println("  -" + task.getStatus());
+                System.out.println("  -" + task.getCreated_at().toString());
+                System.out.println("*************************************");
+            }
+        }else{
+            System.out.println("You dont have tasks yet");
         }
 
     }

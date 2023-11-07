@@ -1,10 +1,12 @@
 package com.alejo.to_do_app.controller;
 
-import com.alejo.to_do_app.model.Conect;
-import com.alejo.to_do_app.model.Task;
-
+import com.alejo.to_do_app.model.*;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class TaskController {
     public static void crearTareaDB(Task task){
@@ -27,5 +29,38 @@ public class TaskController {
             System.out.println("Error creando tarea: "+ e);
         }
 
+    }
+
+    public static List getTaskDB(){
+        List<Task> data = null;
+        try {
+            PreparedStatement statement = null;
+            if(Conect.getConnection()!=null){
+                try{
+                    String query = "SELECT * FROM task";
+                    statement = Conect.getConnection().prepareStatement(query);
+                    ResultSet rs = statement.executeQuery();
+                    String dataText = null;
+                    data = new ArrayList<Task>();
+                    while (rs.next()){
+                        int id = rs.getInt("id_task");
+                        String name = rs.getString("name");
+                        String status = rs.getString("status");
+                        String description = rs.getString("description");
+                        Date created_at = rs.getDate("created_at");
+                        Date dead_line = rs.getDate("dead_line");
+                        String priority = rs.getString("priority");
+                        Task task = new Task(id,name,status,description,created_at,dead_line,priority);
+                        data.add(task);
+                    }
+
+                }catch (SQLException e){
+                    System.out.println("Error SQL creando tarea: " + e);
+                }
+            }
+        }catch (Exception e){
+            System.out.println("Error creando tarea: "+ e);
+        }
+        return data;
     }
 }

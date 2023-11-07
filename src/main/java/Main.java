@@ -7,11 +7,15 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int option = 0;
         do{
-            System.out.println("<--To Do APP-->\n1. Create task \n2. View Task\n3.Update Task\n4. Delete task");
+            System.out.println("<--To Do APP-->\n1. Create task \n2. View Task\n3. Update Task\n4. Delete task");
             option = scanner.nextInt();
             switch (option){
                 case 1:
                     TaskService.createTask();
+                    break;
+                case 2:
+                    TaskService.getTask();
+                    break;
             }
         }while (option != 0);
     }
