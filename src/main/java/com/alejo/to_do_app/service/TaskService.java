@@ -73,7 +73,6 @@ public class TaskService {
         }
 
     }
-
     private static boolean compareStatus(String original, String newPriority){
         return original.equals(newPriority);
     }
@@ -84,7 +83,7 @@ public class TaskService {
                 getTask();
                 System.out.println("What task do you want to update: ");
                 Task task = data.get(scanner.nextInt()-1);
-                System.out.println(task.toString());
+                //System.out.println(task.toString());
                 //----------------------------------
                 scanner.nextLine();
                 String name, description, status, priority;
@@ -125,8 +124,8 @@ public class TaskService {
                 }
                 //----------------------------------
                 System.out.println("New status: \n1. Done\n2. In progress\n3. Pending");
-                status = scanner.nextLine();
-                switch (status){
+                priority = scanner.nextLine();
+                switch (priority){
                     case "1":
                         if(!compareStatus(task.getStatus(),Task.Status.DONE.name())){
                             task.setPriority(Task.Status.DONE.name());
@@ -160,6 +159,24 @@ public class TaskService {
 
         }catch (Exception e){
             System.out.println("Error: " + e);
+        }
+    }
+
+    public static void deleteTask(){
+        try {
+            List<Task> data = TaskController.getTaskDB();
+            if (!data.isEmpty()) {
+                getTask();
+                System.out.println("What task do you want to delete: ");
+                Task task = new Task();
+                task = data.get(scanner.nextInt()-1);
+                TaskController.deleteTaskDB(task);
+            }else{
+                System.out.println("You dont have tasks yet");
+            }
+        }catch (Throwable e){
+            System.out.println("Error: " + e);
+
         }
     }
 

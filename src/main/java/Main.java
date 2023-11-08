@@ -19,6 +19,9 @@ public class Main {
                 case 3:
                     TaskService.updateTask();
                     break;
+                case 4:
+                    TaskService.deleteTask();
+                    break;
             }
         }while (option != 0);
     }

@@ -82,4 +82,22 @@ public class TaskController {
             System.out.println("Error actualizando tarea: "+ e);
         }
     }
+    public static void deleteTaskDB(Task task){
+        try {
+            PreparedStatement statement = null;
+            if(Conect.getConnection()!=null){
+                try{
+                    String query = "DELETE FROM task WHERE task.id_task = ?";
+                    statement = Conect.getConnection().prepareStatement(query);
+                    statement.setString(1, task.getId_task().toString());
+                    statement.executeUpdate();
+                }catch (SQLException e){
+                    System.out.println("Error SQL eliminando tarea: " + e);
+                }
+            }
+        }catch (Exception e){
+            System.out.println("Error eliminando tarea: "+ e);
+        }
+    }
+
 }
