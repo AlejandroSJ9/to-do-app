@@ -10,7 +10,7 @@ public class ViewAdmin {
         Scanner scanner = new Scanner(System.in);
         int option = 0;
         do{
-            System.out.println("<--To Do APP-->\n1. Create task \n2. View Task\n3. Update Task\n4. Delete task\n-----------\n5. Create tag");
+            System.out.println("<--To Do APP-->\n1. Create task \n2. View Task\n3. Update Task\n4. Delete task\n-----------\n5. Create tag\n6. Get tag");
             option = scanner.nextInt();
             switch (option){
                 case 1:
@@ -27,6 +27,10 @@ public class ViewAdmin {
                     break;
                 case 5:
                     TagService.crearTag();
+                    break;
+                case 6:
+                    TagService.getTag();
+                    break;
             }
         }while (option != 0);
     }

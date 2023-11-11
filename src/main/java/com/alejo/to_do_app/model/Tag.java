@@ -11,6 +11,11 @@ public class Tag {
         this.name = name;
     }
 
+    public Tag (Integer id_tag, String name) {
+        this.id_tag = id_tag;
+        this.name = name;
+    }
+
     public Integer getId_tag () {
         return id_tag;
     }
