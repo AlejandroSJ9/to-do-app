@@ -54,4 +54,22 @@ public class TagController {
         }
         return data;
     }
+    public static void updateTagDB(Tag tag){
+        try {
+            PreparedStatement statement = null;
+            if(Conect.getConnection()!=null){
+                try{
+                    String query = "UPDATE tag SET name = ?  WHERE tag.id_tag = ?";
+                    statement = Conect.getConnection().prepareStatement(query);
+                    statement.setString(1, tag.getName());
+                    statement.setInt(2,tag.getId_tag());
+                    statement.executeUpdate();
+                }catch (SQLException e){
+                    System.out.println("Error SQL actualizando tag: " + e);
+                }
+            }
+        }catch (Exception e){
+            System.out.println("Error actualizando tag: "+ e);
+        }
+    }
 }
